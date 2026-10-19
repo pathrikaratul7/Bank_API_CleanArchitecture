@@ -34,8 +34,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
-
 app.MapGet("/api/users/{Id:int}", (int Id) =>
 {
     var users = new[]
@@ -54,3 +52,6 @@ app.MapGet("/api/users/{Id:int}", (int Id) =>
 });
 
 app.Run();
+
+// Make Program public for testing
+public partial class Program { }
