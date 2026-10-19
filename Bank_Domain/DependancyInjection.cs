@@ -1,4 +1,5 @@
 ﻿using Bank_Domain.Entities;
+using Bank_Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Bank_Domain
     {
         public static IServiceCollection AddDomainDI(this IServiceCollection services)
         {
+            services.AddScoped<IBankDomainService, BankDomainService>();
             
             return services;
         }

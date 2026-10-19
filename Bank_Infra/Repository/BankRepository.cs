@@ -1,11 +1,6 @@
 ﻿using Bank_Application.Interface;
 using Bank_Domain.Entities;
 using Bank_Infra.Data;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Bank_Infra.Repository
@@ -14,30 +9,20 @@ namespace Bank_Infra.Repository
     {
         private readonly BankAppDbContext _context;
 
-        //private readonly IServiceProvider _serviceProvider;
-        //, IServiceProvider serviceProvider
         public BankRepository(BankAppDbContext bankAppDbContext)
         {
-                _context = bankAppDbContext;
-           // _serviceProvider = serviceProvider;
+            _context = bankAppDbContext;
         }
-
-      
 
         public async Task AddBankAsynch(Bank bank, CancellationToken cancellationToken)
         {
-            var result = await _context.Banks.AddAsync(bank);
-            await SaveChangesAsync();
-           // _serviceProvider.GetRequiredKeyedService<IBankRepository>("UIP");
-
-            
+            await _context.Banks.AddAsync(bank, cancellationToken);
+            await SaveChangesAsync(cancellationToken);
         }
 
-       
-
-        public async Task SaveChangesAsync()
+        public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

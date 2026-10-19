@@ -9,7 +9,11 @@ Accept: application/json
 POST {{Bank_API_HostAddress}}/api/Bank/AddBankAsynch
 Content-Type: application/json
 {
-  "bankname": "SBI",
-  "bankType": "Goverment",
-  "isActive": true
+  "bankname": "SBIMF",
+  "bankType": "FULL",
+  "isActive": false
 }
+
+###
+GET {{Bank_API_HostAddress}}/api/users/4
+Content-Type:application/json
