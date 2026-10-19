@@ -18,10 +18,8 @@ namespace Bank_API.Controllers
         /// <summary>
         /// this API use to Add Bank Details
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("AddBankAsynch")]
+       
+        [HttpPost(Name = "AddBankAsynch")]
         public async Task<ActionResult<BankResponseDto>> AddBankAsynch(CreateBankDto dto,CancellationToken cancellationToken)
         {
             var result = await _bankService.AddBankAsynch(dto,cancellationToken);

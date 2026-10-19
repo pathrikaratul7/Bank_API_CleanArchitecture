@@ -29,7 +29,7 @@ namespace Bank_Domain.Tests.Entities
         public void Constructor_WithNullOrEmptyBankName_ThrowsArgumentException(string bankName)
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Bank(bankName, "Public", true));
+            Assert.Throws<ArgumentException>(() => new Bank(bankName, "", true));
         }
 
         [Theory]

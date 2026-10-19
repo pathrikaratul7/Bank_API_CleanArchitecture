@@ -30,6 +30,7 @@ namespace Bank_Domain.Entities
 
         public  void UpdateBank(Bank bnk)
         {
+            if (bnk == null) throw new ArgumentNullException("bank entities should not be empty");
 
             if (string.IsNullOrEmpty(bnk.BankName))
                 throw new ArgumentException("Bank name is require");

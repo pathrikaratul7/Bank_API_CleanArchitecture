@@ -9,7 +9,7 @@ Accept: application/json
 POST {{Bank_API_HostAddress}}/api/Bank/AddBankAsynch
 Content-Type: application/json
 {
-  "bankname": "SBIMFAA777",
+  "bankname": "wrwrrwr",
   "bankType": "FULL",
   "isActive": false
 }
