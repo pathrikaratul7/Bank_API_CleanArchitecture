@@ -10,5 +10,6 @@ namespace Bank_Application.Interface
     public interface IBankService
     {
         Task<BankResponseDto> AddBankAsynch(CreateBankDto createBankDto, CancellationToken cancellationToken);
+        Task<BankResponseDto> UpdateBankAsynch(UpdateBankDto UpdateBankDto, CancellationToken cancellationToken);
     }
 }

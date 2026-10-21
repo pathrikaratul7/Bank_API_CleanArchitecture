@@ -18,4 +18,14 @@ namespace Bank_Application.Validation
         
         }
     }
+    public class BankUpdateValidator : AbstractValidator<UpdateBankDto>
+    {
+        public BankUpdateValidator()
+        {
+           // RuleFor(x => x.Bank_ID).LessThan(0).WithMessage("Bank Id is not valid");
+            RuleFor(x => x.Bankname).NotEmpty().WithMessage("Bank Name is required");
+            RuleFor(x => x.BankType).NotEmpty().WithMessage("Bank Type is required");
+        }
+
+    }
 }

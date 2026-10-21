@@ -7,6 +7,7 @@ namespace Bank_Domain.Services
         /// <summary>
         /// Creates a bank entity with domain-level validation and rules
         /// </summary>
-        Bank CreateBank(string bankName, string bankType, bool isActive);
+        Bank ValidateDomainBank(string bankName, string bankType, bool isActive, long Bank_ID=0);
+        //Bank UpdateBank(long Bank_ID, string bankName, string bankType, bool isActive);
     }
 }

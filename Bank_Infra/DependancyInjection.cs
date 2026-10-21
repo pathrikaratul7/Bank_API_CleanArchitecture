@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Bank_Application.Interface;
 using Bank_Infra.Repository;
+using Bank_Domain.Services;
 
 
 namespace Bank_Infra
@@ -17,6 +18,7 @@ namespace Bank_Infra
             
             services.AddDbContext<BankAppDbContext>(option => option.UseSqlServer(SqlCon));
             services.AddScoped<IBankRepository, BankRepository>();
+            
             return services;
         }
     }

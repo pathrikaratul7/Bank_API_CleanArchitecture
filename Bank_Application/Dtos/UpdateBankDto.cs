@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bank_Application.Dtos
+{
+    public class UpdateBankDto : CreateBankDto
+    {
+        public long Bank_ID { get; set; }
+    }
+}

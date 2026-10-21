@@ -14,7 +14,7 @@ namespace Bank_Domain.Entities
         public string BankType { get; private set;} = null!;
         public bool IsActive { get; private set; }
 
-        public Bank(string BankName , string BankType , bool IsActive)
+        public Bank(string BankName , string BankType , bool IsActive, long Bank_ID)
         {
             if (string.IsNullOrEmpty(BankName))
                 throw new ArgumentException("Bank Name is require");
@@ -22,7 +22,7 @@ namespace Bank_Domain.Entities
                 throw new ArgumentException("Bank Type is require");
 
 
-
+            this.Bank_ID = Bank_ID;
             this.BankName = BankName;
             this.BankType = BankType;
             this.IsActive = IsActive;

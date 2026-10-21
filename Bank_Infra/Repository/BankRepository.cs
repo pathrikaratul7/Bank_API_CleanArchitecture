@@ -1,6 +1,7 @@
 ﻿using Bank_Application.Interface;
 using Bank_Domain.Entities;
 using Bank_Infra.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace Bank_Infra.Repository
@@ -24,5 +25,33 @@ namespace Bank_Infra.Repository
         {
             await _context.SaveChangesAsync(cancellationToken);
         }
+
+
+
+
+
+
+        public async Task UpdateBankAsynch(
+            Bank bank,
+            CancellationToken cancellationToken)
+        {
+            var existingBank = await _context.Banks
+                .FindAsync(
+                   bank.Bank_ID,
+                    cancellationToken);
+
+            if (existingBank == null)
+            {
+                throw new KeyNotFoundException(
+                    $"Bank with ID {bank.Bank_ID} not found.");
+            }
+
+            // Use the domain entity's business logic
+            existingBank.UpdateBank(bank);
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+
     }
 }

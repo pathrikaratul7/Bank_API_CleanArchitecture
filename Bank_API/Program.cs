@@ -32,6 +32,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+
 app.MapControllers();
 
 app.MapGet("/api/users/{Id:int}", (int Id) =>

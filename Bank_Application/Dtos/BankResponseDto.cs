@@ -8,6 +8,6 @@ namespace Bank_Application.Dtos
 {
     public class BankResponseDto : CreateBankDto
     {
-        public long BankID {  get; set; }
+        public long Bank_ID {  get; set; }
     }
 }

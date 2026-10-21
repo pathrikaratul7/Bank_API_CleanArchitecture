@@ -14,6 +14,7 @@ namespace Bank_Application
 
             services.AddScoped<IBankService, BankService>();
             services.AddScoped<IValidator<CreateBankDto>, BankValidator>();
+            services.AddScoped<IValidator<UpdateBankDto>, BankValidator>();
             services.AddValidatorsFromAssemblyContaining<BankValidator>();
 
 

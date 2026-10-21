@@ -12,16 +12,19 @@ namespace Bank_Application.Services
     {
         private readonly IBankRepository _bankRepository;
         private readonly IValidator<CreateBankDto> _createBankDtoValidator;
+        private readonly IValidator<UpdateBankDto> _updateBankDtoValidator;
         private readonly IBankDomainService _bankDomainService;
 
         public BankService(
             IBankRepository bankRepository, 
             IValidator<CreateBankDto> validationRule,
-            IBankDomainService bankDomainService)
+            IBankDomainService bankDomainService,
+            IValidator<UpdateBankDto> updateBankValidatorDto)
         {
             _bankRepository = bankRepository;
             _createBankDtoValidator = validationRule;
             _bankDomainService = bankDomainService;
+            _updateBankDtoValidator = updateBankValidatorDto;
         }
 
         public async Task<BankResponseDto> AddBankAsynch(CreateBankDto createBankDto, CancellationToken cancellationToken)
@@ -34,7 +37,7 @@ namespace Bank_Application.Services
             }
 
             // Step 2: Use Domain Service to create entity (Domain Layer responsibility)
-            var bank = _bankDomainService.CreateBank(
+            var bank = _bankDomainService.ValidateDomainBank(
                 createBankDto.Bankname, 
                 createBankDto.BankType, 
                 createBankDto.IsActive);
@@ -45,11 +48,30 @@ namespace Bank_Application.Services
             // Step 4: Return response (Application Layer responsibility)
             return new BankResponseDto
             {
-                BankID  = bank.Bank_ID,
+                Bank_ID  = bank.Bank_ID,
                 Bankname = bank.BankName,
                 BankType = bank.BankType,
                 IsActive = bank.IsActive,
             };
+        }
+        public async Task<BankResponseDto> UpdateBankAsynch(UpdateBankDto update, CancellationToken cancellationToken)
+        { 
+            var validator = await _updateBankDtoValidator.ValidateAsync(update, cancellationToken);
+            if (!validator.IsValid)
+            {
+                throw new ValidationException(validator.Errors);
+            }
+            var Updatebank = _bankDomainService.ValidateDomainBank(update.Bankname, update.BankType, update.IsActive, update.Bank_ID);
+            await _bankRepository.UpdateBankAsynch(Updatebank, cancellationToken);
+
+            return new BankResponseDto
+            {
+                Bank_ID = Updatebank.Bank_ID,
+                Bankname = Updatebank.BankName,
+                BankType = Updatebank.BankType,
+                IsActive = Updatebank.IsActive,
+            };
+        
         }
     }
 }
