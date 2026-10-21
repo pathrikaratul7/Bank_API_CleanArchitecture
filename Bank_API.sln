@@ -11,13 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank_Domain", "Bank_Domain\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank_Infra", "Bank_Infra\Bank_Infra.csproj", "{782B958E-8EBE-461E-BF46-793DCC6AFB19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank_API.Tests", "Bank_API.Tests\Bank_API.Tests.csproj", "{A99389E8-1702-EED2-720C-56F46DB5B791}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Bank_API.Tests", "Bank_API.Tests\Test_Bank_API.Tests.csproj", "{A99389E8-1702-EED2-720C-56F46DB5B791}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank_Application.Tests", "Bank_Application.Tests\Bank_Application.Tests.csproj", "{5572C59E-C4BD-ABE8-A2C1-DBB49FD41D35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Bank_Application.Tests", "Bank_Application.Tests\Test_Bank_Application.Tests.csproj", "{5572C59E-C4BD-ABE8-A2C1-DBB49FD41D35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank_Domain.Tests", "Bank_Domain.Tests\Bank_Domain.Tests.csproj", "{B9ADB9AE-8951-9714-DAE7-4E5466EF2080}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Bank_Domain.Tests", "Bank_Domain.Tests\Test_Bank_Domain.Tests.csproj", "{B9ADB9AE-8951-9714-DAE7-4E5466EF2080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank_Infra.Tests", "Bank_Infra.Tests\Bank_Infra.Tests.csproj", "{C9D36740-8599-CAD1-AB03-239345AE6784}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Bank_Infra.Tests", "Bank_Infra.Tests\Test_Bank_Infra.Tests.csproj", "{C9D36740-8599-CAD1-AB03-239345AE6784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

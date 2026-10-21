@@ -36,7 +36,7 @@ namespace Bank_Infra.Tests.Repository
         public async Task AddBankAsynch_WithValidBank_SavesSuccessfully()
         {
             // Arrange
-            var bank = new Bank("SBI", "Public", true);
+            var bank = new Bank("SBI", "Public", true,0);
 
             // Act
             await _repository.AddBankAsynch(bank, CancellationToken.None);
@@ -52,8 +52,8 @@ namespace Bank_Infra.Tests.Repository
         public async Task AddBankAsynch_MultipleBanks_SavesAllSuccessfully()
         {
             // Arrange
-            var bank1 = new Bank("SBI", "Public", true);
-            var bank2 = new Bank("HDFC", "Private", true);
+            var bank1 = new Bank("SBI", "Public", true, 0);
+            var bank2 = new Bank("HDFC", "Private", true, 0);
 
             // Act
             await _repository.AddBankAsynch(bank1, CancellationToken.None);

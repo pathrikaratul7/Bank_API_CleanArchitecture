@@ -17,12 +17,13 @@ namespace Bank_Domain.Tests.Services
         public void CreateBank_WithValidData_ReturnsBankEntity()
         {
             // Arrange
+            long Bank_ID = 0;
             var bankName = "SBI";
             var bankType = "Public";
             var isActive = true;
 
             // Act
-            var result = _service.CreateBank(bankName, bankType, isActive);
+            var result = _service.ValidateDomainBank(bankName, bankType, isActive,0);
 
             // Assert
             Assert.NotNull(result);
@@ -38,7 +39,7 @@ namespace Bank_Domain.Tests.Services
         public void CreateBank_WithNullOrEmptyBankName_ThrowsArgumentException(string bankName)
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => _service.CreateBank(bankName, "Public", true));
+            Assert.Throws<ArgumentException>(() => _service.ValidateDomainBank(bankName, "Public", true));
         }
 
         [Theory]
@@ -47,14 +48,14 @@ namespace Bank_Domain.Tests.Services
         public void CreateBank_WithNullOrEmptyBankType_ThrowsArgumentException(string bankType)
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => _service.CreateBank("SBI", bankType, true));
+            Assert.Throws<ArgumentException>(() => _service.ValidateDomainBank("SBI", bankType, true));
         }
 
         [Fact]
         public void CreateBank_WithInactiveBank_CreatesInactiveBank()
         {
             // Act
-            var result = _service.CreateBank("SBI", "Public", false);
+            var result = _service.ValidateDomainBank("SBI", "Public", false);
 
             // Assert
             Assert.False(result.IsActive);

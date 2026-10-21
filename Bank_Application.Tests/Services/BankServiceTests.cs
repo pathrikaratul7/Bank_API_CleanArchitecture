@@ -13,6 +13,7 @@ namespace Bank_Application.Tests.Services
     {
         private readonly Mock<IBankRepository> _mockRepository;
         private readonly Mock<IValidator<CreateBankDto>> _mockValidator;
+        private readonly Mock<IValidator<UpdateBankDto>> _mockUpdateValidator;
         private readonly Mock<IBankDomainService> _mockDomainService;
         private readonly BankService _service;
 
@@ -20,9 +21,11 @@ namespace Bank_Application.Tests.Services
         {
             _mockRepository = new Mock<IBankRepository>();
             _mockValidator = new Mock<IValidator<CreateBankDto>>();
+            _mockUpdateValidator = new Mock<IValidator<UpdateBankDto>>();
+
             _mockDomainService = new Mock<IBankDomainService>();
 
-            _service = new BankService(_mockRepository.Object, _mockValidator.Object, _mockDomainService.Object);
+            _service = new BankService(_mockRepository.Object, _mockValidator.Object, _mockDomainService.Object,_mockUpdateValidator.Object);
         }
 
         [Fact]
@@ -36,7 +39,7 @@ namespace Bank_Application.Tests.Services
                 IsActive = true
             };
 
-            var bank = new Bank("SBI", "Public", true);
+            var bank = new Bank("SBI", "Public", true,0);
 
             // Mock validation result
             var validationResult = new FluentValidation.Results.ValidationResult();
@@ -46,7 +49,7 @@ namespace Bank_Application.Tests.Services
 
             // Mock domain service
             _mockDomainService
-                .Setup(x => x.CreateBank(createDto.Bankname, createDto.BankType, createDto.IsActive))
+                .Setup(x => x.ValidateDomainBank(createDto.Bankname, createDto.BankType, createDto.IsActive,0))
                 .Returns(bank);
 
             // Mock repository
@@ -65,7 +68,7 @@ namespace Bank_Application.Tests.Services
 
             // Verify mocks were called
             _mockValidator.Verify(x => x.ValidateAsync(createDto, It.IsAny<CancellationToken>()), Times.Once);
-            _mockDomainService.Verify(x => x.CreateBank(createDto.Bankname, createDto.BankType, createDto.IsActive), Times.Once);
+            _mockDomainService.Verify(x => x.ValidateDomainBank(createDto.Bankname, createDto.BankType, createDto.IsActive,0), Times.Once);
             _mockRepository.Verify(x => x.AddBankAsynch(It.IsAny<Bank>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
@@ -98,14 +101,14 @@ namespace Bank_Application.Tests.Services
             };
 
             var validationResult = new FluentValidation.Results.ValidationResult();
-            var bank = new Bank("SBI", "Public", true);
+            var bank = new Bank("SBI", "Public", true,0);
 
             _mockValidator
                 .Setup(x => x.ValidateAsync(It.IsAny<CreateBankDto>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(validationResult);
 
             _mockDomainService
-                .Setup(x => x.CreateBank(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()))
+                .Setup(x => x.ValidateDomainBank(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(),0))
                 .Returns(bank);
 
             _mockRepository

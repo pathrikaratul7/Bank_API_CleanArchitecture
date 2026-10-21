@@ -35,18 +35,13 @@ namespace Bank_Infra.Repository
             Bank bank,
             CancellationToken cancellationToken)
         {
-            var existingBank = await _context.Banks
-                .FindAsync(
-                   bank.Bank_ID,
-                    cancellationToken);
+            var existingBank = await _context.Banks.FindAsync(bank.Bank_ID,cancellationToken);
 
             if (existingBank == null)
             {
                 throw new KeyNotFoundException(
                     $"Bank with ID {bank.Bank_ID} not found.");
             }
-
-            // Use the domain entity's business logic
             existingBank.UpdateBank(bank);
 
             await _context.SaveChangesAsync(cancellationToken);
